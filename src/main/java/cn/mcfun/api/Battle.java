@@ -131,7 +131,6 @@ public class Battle {
         String sign = (new AuthCode()).getSign(userInfo, params);
         params.add(new BasicNameValuePair("authCode", sign));
         String result = (new PostRequest()).sendPost(userInfo.getCookie(), "https://game.fate-go.jp/battle/result?_userId=" + userInfo.getUserId(), params);
-        System.out.println(result);
         JSONObject jsonObject = JSONObject.parseObject(result);
         if (jsonObject.getJSONArray("response").getJSONObject(0).getString("resCode").equals("00")) {
             Connection conn2 = C3P0Utils.getConnection();
