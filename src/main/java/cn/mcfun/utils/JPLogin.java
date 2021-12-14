@@ -157,12 +157,11 @@ public class JPLogin {
             }
             String continueKey = jsonObject.getJSONObject("cache").getJSONObject("updated").getJSONArray("userContinue").getJSONObject(0).getString("continueKey");
             Connection conn2 = C3P0Utils.getConnection();
-            sql2 = "update `order` set user=?,pwd=?,svts=?,message='登录成功' where `order`=? and status='执行中'";
+            sql2 = "update `order` set user=?,svts=?,message='登录成功' where `order`=? and status='执行中'";
             PreparedStatement ps2 = conn2.prepareStatement(sql2);
             ps2.setString(1, continueKey);
-            ps2.setString(2, "1234");
-            ps2.setString(3, svtId);
-            ps2.setString(4, userInfo.getOrder());
+            ps2.setString(2, svtId);
+            ps2.setString(3, userInfo.getOrder());
             ps2.executeUpdate();
             conn2.close();
             ps2.close();
