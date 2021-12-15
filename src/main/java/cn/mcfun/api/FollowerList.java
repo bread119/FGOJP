@@ -24,7 +24,7 @@ public class FollowerList {
         List<BasicNameValuePair> params = new ArrayList();
         params.add(new BasicNameValuePair("questId", questId));
         params.add(new BasicNameValuePair("questPhase", questPhase));
-        params.add(new BasicNameValuePair("refresh", "0"));
+        params.add(new BasicNameValuePair("refresh", "1"));
         params.add(new BasicNameValuePair("userId", userInfo.getUserId()));
         params.add(new BasicNameValuePair("authKey", userInfo.getAuthKey()));
         params.add(new BasicNameValuePair("appVer", Main.appVer));

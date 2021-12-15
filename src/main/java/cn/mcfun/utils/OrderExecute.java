@@ -1,6 +1,5 @@
 package cn.mcfun.utils;
 
-import cn.mcfun.api.Battle;
 import cn.mcfun.api.GachaDraw;
 import cn.mcfun.api.Present;
 import cn.mcfun.entity.UserInfo;

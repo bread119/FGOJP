@@ -83,6 +83,9 @@ public class JPLogin {
 
             JSONArray userDeck = jsonObject.getJSONObject("cache").getJSONObject("replaced").getJSONArray("userDeck");
             String activeDeckId = jsonObject.getJSONObject("cache").getJSONObject("replaced").getJSONArray("userGame").getJSONObject(0).getString("activeDeckId");
+            String userEquipId = jsonObject.getJSONObject("cache").getJSONObject("replaced").getJSONArray("userGame").getJSONObject(0).getString("userEquipId");
+            userInfo.setActiveDeckId(activeDeckId);
+            userInfo.setUserEquipId(userEquipId);
             JSONObject activeuserDeck = null;
 
             for(int i = 0; i < userDeck.size(); ++i) {
