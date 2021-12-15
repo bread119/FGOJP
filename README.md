@@ -14,12 +14,12 @@ proxy表可不填，如需批量跑号，ip被屏蔽之后可再次添加代理i
 存档文件在设备的位置`/sdcard/Android/data/com.aniplex.fategrandorder/files/data/54cc790bf952ea710ed7e8be08049531`， 用记事本或者文本浏览功能的软件打开，可看到加密后的字符串，从`ZSv`开始复制到最后，`ZSv/WkOGiQ......2A/xc2oyX/Bw==`。</br>
 使用下面代码即可在控制台打印出带有`user_id`、`auth_key`、`sec_key`的json。</br>
 ```
-import cn.mcfun.utils.FileExtractor;
+import cn.mcfun.utils.TripleDES;
 
 public class test {
-    public static void main(String[] args) throws Exception {
-        FileExtractor fe = new FileExtractor();
-        String data = fe.fileExtractor("ZSv/WkOGiQ......2A/xc2oyX/Bw==");
+    public static void main(String[] args) {
+        TripleDES des = new TripleDES();
+        String data = des.decryptMode("ZSv/WkOGiQ......2A/xc2oyX/Bw==");
         System.out.println(data);
     }
 }
