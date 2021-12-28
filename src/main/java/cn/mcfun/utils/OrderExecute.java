@@ -1,5 +1,7 @@
 package cn.mcfun.utils;
 
+import cn.mcfun.api.Battle;
+import cn.mcfun.api.FollowerList;
 import cn.mcfun.api.GachaDraw;
 import cn.mcfun.api.Present;
 import cn.mcfun.entity.UserInfo;
@@ -60,6 +62,20 @@ public class OrderExecute implements Runnable {
         conn.close();
         ps.close();
         (new JPLogin()).topLogin(userInfo);
+
+/*
+        conn = C3P0Utils.getConnection();
+        sql = "update `order` set message=? where `order`=?";
+        ps = conn.prepareStatement(sql);
+        ps.setString(1, "正在刷图");
+        ps.setString(2, this.order.getOrderId());
+        ps.executeUpdate();
+        conn.close();
+        ps.close();
+        String[] arr = new FollowerList().followerlist1("93000001","3",userInfo);
+        new Battle().battlesetup(userInfo.getActiveDeckId(), userInfo.getUserEquipId(), "93000001","3",arr[0],arr[2],arr[1],userInfo);
+*/
+
         conn = C3P0Utils.getConnection();
         sql = "update `order` set message=? where `order`=?";
         ps = conn.prepareStatement(sql);

@@ -7,6 +7,8 @@ import cn.mcfun.utils.AuthCode;
 import com.alibaba.fastjson.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
+
 import org.apache.http.message.BasicNameValuePair;
 
 public class ItemRecover {
@@ -39,6 +41,7 @@ public class ItemRecover {
         params.add(new BasicNameValuePair("authKey", userInfo.getAuthKey()));
         params.add(new BasicNameValuePair("appVer", Main.appVer));
         params.add(new BasicNameValuePair("dateVer", Main.dateVer));
+        params.add(new BasicNameValuePair("idempotencyKey", UUID.randomUUID().toString().toLowerCase()));
         params.add(new BasicNameValuePair("lastAccessTime", lastAccessTime));
         params.add(new BasicNameValuePair("verCode", "723d93a599b6f10ef3085ff1131fa5679a91da924246b8ca40dded18eccaf3da"));
         params.add(new BasicNameValuePair("dataVer", Main.dataVer));
@@ -63,6 +66,7 @@ public class ItemRecover {
         params.add(new BasicNameValuePair("authKey", userInfo.getAuthKey()));
         params.add(new BasicNameValuePair("appVer", Main.appVer));
         params.add(new BasicNameValuePair("dateVer", Main.dateVer));
+        params.add(new BasicNameValuePair("idempotencyKey", UUID.randomUUID().toString().toLowerCase()));
         params.add(new BasicNameValuePair("lastAccessTime", lastAccessTime));
         params.add(new BasicNameValuePair("verCode", "723d93a599b6f10ef3085ff1131fa5679a91da924246b8ca40dded18eccaf3da"));
         params.add(new BasicNameValuePair("dataVer", Main.dataVer));

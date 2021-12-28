@@ -108,8 +108,8 @@ public class Main {
         panel.add(logOFF);
         JTextArea console = new JTextArea();
         MyPrintStream mps = new MyPrintStream(System.out, console);
-        System.setOut(mps);
-        System.setErr(mps);
+        //System.setOut(mps);
+        //System.setErr(mps);
         console.setBounds(310, 20, 460, 460);
         console.setEnabled(false);
         console.setVisible(false);
