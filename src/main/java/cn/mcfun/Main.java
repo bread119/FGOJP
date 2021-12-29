@@ -57,6 +57,9 @@ public class Main {
     public static String dataServerFolderCrc = "";
     public static String dataVer = "";
     public static String dateVer = "";
+    public static String animalName = "";
+    public static byte[] key;
+    public static byte[] iv;
 
     public static void main(String[] args) {
         File file = new File("config.properties");
@@ -215,7 +218,16 @@ public class Main {
             dataServerFolderCrc = json.getJSONObject("global").getString("dataServerFolderCrc");
             dataVer = json.getJSONObject("global").getString("dataVer");
             dateVer = json.getJSONObject("global").getString("dateVer");
-            setup.setEnabled(false);
+            animalName = json.getJSONObject("global").getString("animalName");
+            byte[] a = Main.animalName.getBytes();
+            key = new byte[32];
+            for (int i=0;i<32; i++) {
+                key[i] = (byte)(a[i] ^ 4);
+            }
+            iv = new byte[a.length-32];
+            for (int i=0;i<a.length-32; i++) {
+                iv[i] = (byte)(a[i+32] ^ 8);
+            }setup.setEnabled(false);
             startButton.setEnabled(true);
             gachaIdText.setEnabled(true);
             svtIdText.setEnabled(true);

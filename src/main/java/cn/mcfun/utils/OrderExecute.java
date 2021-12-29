@@ -64,6 +64,7 @@ public class OrderExecute implements Runnable {
         (new JPLogin()).topLogin(userInfo);
 
 /*
+
         conn = C3P0Utils.getConnection();
         sql = "update `order` set message=? where `order`=?";
         ps = conn.prepareStatement(sql);
@@ -74,6 +75,7 @@ public class OrderExecute implements Runnable {
         ps.close();
         String[] arr = new FollowerList().followerlist1("93000001","3",userInfo);
         new Battle().battlesetup(userInfo.getActiveDeckId(), userInfo.getUserEquipId(), "93000001","3",arr[0],arr[2],arr[1],userInfo);
+
 */
 
         conn = C3P0Utils.getConnection();
