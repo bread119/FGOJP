@@ -27,7 +27,7 @@ public class AES {
         try {
             byte[] cipherText = Base64.getDecoder().decode(encrypted);
             PaddedBufferedBlockCipher aes = new PaddedBufferedBlockCipher(new CBCBlockCipher(new RijndaelEngine(256)), new PKCS7Padding());
-            CipherParameters ivAndKey = new ParametersWithIV(new KeyParameter("o~`Ipti~uGLEb|44weQ5cMlPn]GqK@5N".getBytes()), "{|y|a{P{OQyZ^kyz@Zqlb;c>~BKq[};o".getBytes());
+            CipherParameters ivAndKey = new ParametersWithIV(new KeyParameter(Main.key), Main.iv);
             aes.init(false, ivAndKey);
             return new String(cipherData(aes, cipherText));
         } catch (InvalidCipherTextException e) {

@@ -2,7 +2,6 @@ package cn.mcfun.utils;
 
 import cn.mcfun.Main;
 import cn.mcfun.entity.UserInfo;
-import cn.mcfun.name.SellSvtName;
 import cn.mcfun.name.SvtName;
 import cn.mcfun.request.PostRequest;
 import com.alibaba.fastjson.JSONArray;
@@ -103,50 +102,22 @@ public class JPLogin {
             }
             JSONArray userSvt = jsonObject.getJSONObject("cache").getJSONObject("replaced").getJSONArray("userSvt");
             Map<String, Integer> svt = new HashMap();
-            SellSvtName sell = new SellSvtName();
-            JSONArray sellData = new JSONArray();
             if (userSvt != null) {
                 for(int i = 0; i < userSvt.size(); ++i) {
                     if (!userSvt.getJSONObject(i).getString("status").equals("6") && !userSvt.getJSONObject(i).getString("status").equals("7")) {
-                        if (sell.getSellSvtName(userSvt.getJSONObject(i).getString("svtId")).equals("1") && userSvt.getJSONObject(i).getString("status").equals("0") && !userDecksvt.containsKey(userSvt.getJSONObject(i).getString("id"))) {
-                            sellData.add(JSONObject.parse("{\"id\":" + userSvt.getJSONObject(i).getString("id") + ",\"num\":1}"));
-                        }
-
                         if (userSvt.getJSONObject(i).getString("svtId").length() == 6 || userSvt.getJSONObject(i).getString("svtId").length() == 7 && userSvt.getJSONObject(i).getString("svtId").startsWith("10") || userSvt.getJSONObject(i).getString("svtId").length() == 7 && userSvt.getJSONObject(i).getString("svtId").startsWith("11") || userSvt.getJSONObject(i).getString("svtId").length() == 7 && userSvt.getJSONObject(i).getString("svtId").startsWith("23") || userSvt.getJSONObject(i).getString("svtId").length() == 7 && userSvt.getJSONObject(i).getString("svtId").startsWith("25")) {
-                            if (svt.containsKey(userSvt.getJSONObject(i).getString("svtId")) || !sell.getSellSvtName(userSvt.getJSONObject(i).getString("svtId")).equals("0") && !userSvt.getJSONObject(i).getString("status").equals("1") && !userDecksvt.containsKey(userSvt.getJSONObject(i).getString("id"))) {
-                                if (sell.getSellSvtName(userSvt.getJSONObject(i).getString("svtId")).equals("0") || userSvt.getJSONObject(i).getString("status").equals("1") || userDecksvt.containsKey(userSvt.getJSONObject(i).getString("id"))) {
-                                    svt.put(userSvt.getJSONObject(i).getString("svtId"), (Integer)svt.get(userSvt.getJSONObject(i).getString("svtId")) + 1);
-                                }
-                            } else {
-                                svt.put(userSvt.getJSONObject(i).getString("svtId"), 1);
-                                if (userSvt.getJSONObject(i).getString("svtId").equals("800100")) {
-                                    quest.put("svt1", userSvt.getJSONObject(i).getString("id"));
-                                } else if (!quest.containsKey("svt2")) {
-                                    quest.put("svt2", userSvt.getJSONObject(i).getString("id"));
-                                }
+                            svt.put(userSvt.getJSONObject(i).getString("svtId"), 1);
+                            if (userSvt.getJSONObject(i).getString("svtId").equals("800100")) {
+                                quest.put("svt1", userSvt.getJSONObject(i).getString("id"));
+                            } else if (!quest.containsKey("svt2")) {
+                                quest.put("svt2", userSvt.getJSONObject(i).getString("id"));
                             }
                         }
                     }
                 }
             }
-
-            Set set = svt.keySet();
-            String svtId = null;
-            SvtName svt2 = new SvtName();
-            Iterator iterator = set.iterator();
-
             String sql2;
-            while(iterator.hasNext()) {
-                sql2 = (String)iterator.next();
-                Object value = svt.get(sql2);
-                if (svtId == null) {
-                    svtId = svt2.getSvtName(sql2) + "x" + value;
-                } else {
-                    svtId = svtId + "," + svt2.getSvtName(sql2) + "x" + value;
-                }
-            }
 
-            quest.put("sellData", sellData.toJSONString());
             userInfo.setQuest(quest);
 
             try {
@@ -160,7 +131,7 @@ public class JPLogin {
             sql2 = "update `order` set user=?,svts=?,message='登录成功' where `order`=? and status='执行中'";
             PreparedStatement ps2 = conn2.prepareStatement(sql2);
             ps2.setString(1, continueKey);
-            ps2.setString(2, svtId);
+            ps2.setString(2, svt.toString());
             ps2.setString(3, userInfo.getOrder());
             ps2.executeUpdate();
             conn2.close();

@@ -10,14 +10,12 @@ import cn.mcfun.utils.C3P0Utils;
 import com.alibaba.fastjson.JSONObject;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.UUID;
 
-import jdk.jfr.Unsigned;
 import org.apache.http.message.BasicNameValuePair;
 
 public class Battle {
