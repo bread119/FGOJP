@@ -28,6 +28,6 @@ public class test {
 }
 ```
 ## 卡池和从者id查询
-参考项目：[FZFalzar](https://github.com/FZFalzar/FGOData) </br>
-卡池id看这里：[mstGacha.json](https://github.com/FZFalzar/FGOData/blob/master/JP_tables/gacha/mstGacha.json) </br>
-从者id看这里：[mstSvt.json](https://github.com/FZFalzar/FGOData/blob/master/JP_tables/svt/mstSvt.json) </br>
+参考项目：[FZFalzar](https://github.com/xiaoheimaoo/FGOData) </br>
+卡池id看这里：[mstGacha.json](https://github.com/xiaoheimaoo/FGOData/blob/master/JP_tables/gacha/mstGacha.json) </br>
+从者id看这里：[mstSvt.json](https://github.com/xiaoheimaoo/FGOData/blob/master/JP_tables/svt/mstSvt.json) </br>
